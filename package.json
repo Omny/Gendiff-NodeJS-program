@@ -1,0 +1,23 @@
+{
+  "name": "@hexlet/code",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Gendiff utility",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omny/frontend-project-lvl2.git"
+  },
+  "author": "Artem Petrishchev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Omny/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/Omny/frontend-project-lvl2#readme"
+}
