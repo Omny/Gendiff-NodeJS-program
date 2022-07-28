@@ -5,7 +5,7 @@
 
 A program that determines the difference between two data structures.
 
-[![asciicast](https://asciinema.org/a/yNcgIQUYWDbs3knA5fSHutSyD.svg)](https://asciinema.org/a/yNcgIQUYWDbs3knA5fSHutSyD)
+[![asciicast](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL.svg)](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL)
 
 ## How to install:
 
