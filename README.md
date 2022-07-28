@@ -19,24 +19,28 @@ npm link
 
 gendiff filepath1.json filepath2.json
 
-\{
+```
+{
   + follow: false
     setting1: Value 1
   - setting2: 200
   - setting3: true
-  + setting3: \{
+  + setting3: {
         key: value
-    \}
+    }
   + setting4: blah blah
-  + setting5: \{
+  + setting5: {
         key5: value5
-    \}
-\}
+    }
+}
+```
 
 # Plain format
 
 gendiff --format plain path/to/file.yml another/path/file.json
 
+```
 Property 'common.follow' was added with value: false
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group2' was removed
+```
