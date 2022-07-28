@@ -15,15 +15,7 @@ npm link
 
 ## How to use:
 
-# plain foramt
-
-gendiff --format plain path/to/file.yml another/path/file.json
-
-Property 'common.follow' was added with value: false
-Property 'group1.baz' was updated. From 'bas' to 'bars'
-Property 'group2' was removed
-
-# stylish format
+# Stylish format
 
 gendiff filepath1.json filepath2.json
 
@@ -40,3 +32,11 @@ gendiff filepath1.json filepath2.json
         key5: value5
     }
 }
+
+# Plain foramt
+
+gendiff --format plain path/to/file.yml another/path/file.json
+
+Property 'common.follow' was added with value: false
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group2' was removed
