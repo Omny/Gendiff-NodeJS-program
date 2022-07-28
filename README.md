@@ -15,7 +15,7 @@ npm link
 
 ## How to use:
 
-# Stylish format
+### Stylish format
 
 gendiff filepath1.json filepath2.json
 
@@ -35,7 +35,7 @@ gendiff filepath1.json filepath2.json
 }
 ```
 
-# Plain format
+### Plain format
 
 gendiff --format plain path/to/file.yml another/path/file.json
 
