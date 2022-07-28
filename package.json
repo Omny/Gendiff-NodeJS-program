@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Gendiff utility",
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "./bin/gendiff.js"
   },
-  "main": "index.js",
+  "main": "./src/main.js",
   "scripts": {
     "test": "npx jest"
   },
@@ -26,6 +26,7 @@
     "eslint-plugin-import": "^2.26.0"
   },
   "dependencies": {
-    "commander": "^9.4.0"
+    "commander": "^9.4.0",
+    "lodash": "^4.17.21"
   }
 }
