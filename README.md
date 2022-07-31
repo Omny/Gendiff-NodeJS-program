@@ -1,6 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Omny/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Omny/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fb078e82b82a577e8fdd/maintainability)](https://codeclimate.com/github/Omny/frontend-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fb078e82b82a577e8fdd/test_coverage)](https://codeclimate.com/github/Omny/frontend-project-lvl2/test_coverage)
 [![Node CI](https://github.com/Omny/frontend-project-lvl2/actions/workflows/github-actions.yml/badge.svg)](https://github.com/Omny/frontend-project-lvl2/actions/workflows/github-actions.yml)
 
 # Gendiff - NodeJS console utility
