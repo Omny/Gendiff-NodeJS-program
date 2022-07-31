@@ -17,10 +17,10 @@ const compareData = (data1, data2) => {
       difference.push(`    ${key}: ${data1[key]}`);
       return;
     }
-    if (Object.hasOwn(data1, key)) {
+    if (data1[key] !== undefined) {
       difference.push(`  - ${key}: ${data1[key]}`);
     }
-    if (Object.hasOwn(data2, key)) {
+    if (data2[key] !== undefined) {
       difference.push(`  + ${key}: ${data2[key]}`);
     }
   });
