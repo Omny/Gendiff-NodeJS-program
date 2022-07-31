@@ -23,7 +23,6 @@ jobs:
     steps:
         # Check-out repository under GitHub workspace
         # https://github.com/actions/checkout
-      - uses: actions/checkout@v2
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
         # Configures the node version used on GitHub-hosted runners
@@ -37,9 +36,9 @@ jobs:
       - run: make lint
       - run: make test
       - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: make test-coverage
-        debug: true
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
