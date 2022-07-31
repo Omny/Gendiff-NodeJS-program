@@ -1,5 +1,5 @@
-import * as fs from 'node:fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 import _ from 'lodash';
 
 const parseData = (file, extension) => {
@@ -28,7 +28,9 @@ const compareData = (data1, data2) => {
   return `{\n${difference.join('\n')}\n}`;
 };
 
-const gendiff = (path1, path2, format = 'json') => {
+// const gendiff = (path1, path2, format = 'json') => {
+
+const gendiff = (path1, path2) => {
   const fullPath1 = path.resolve(process.cwd(), path1);
   const fullPath2 = path.resolve(process.cwd(), path2);
   const file1 = fs.readFileSync(fullPath1, 'utf-8');
@@ -38,8 +40,7 @@ const gendiff = (path1, path2, format = 'json') => {
   const data1 = parseData(file1, file1Extension);
   const data2 = parseData(file2, file2Extension);
   const result = compareData(data1, data2);
-
-  console.log(result);
+  return result;
 };
 
 export default gendiff;
