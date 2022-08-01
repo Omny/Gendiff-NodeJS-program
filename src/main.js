@@ -1,13 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-
-const parseData = (file, extension) => {
-  if (extension === '.json') {
-    return JSON.parse(file);
-  }
-  return {};
-};
+import parseData from './parsers.js';
 
 const compareData = (data1, data2) => {
   const allKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
