@@ -8,7 +8,13 @@
 
 A program that determines the difference between two data structures.
 
+Two json files:
+
 [![asciicast](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL.svg)](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL)
+
+Two yaml files:
+
+[![asciicast](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5.svg)](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5)
 
 ## How to install:
 
