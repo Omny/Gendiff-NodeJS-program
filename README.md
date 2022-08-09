@@ -61,3 +61,7 @@ Property 'common.follow' was added with value: false
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group2' was removed
 ```
+
+### Json format
+
+gendiff --format json path/to/file.yml another/path/file.json
