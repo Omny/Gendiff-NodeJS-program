@@ -2,13 +2,11 @@ import _ from 'lodash';
 
 const plain = (diffTree) => {
   const iter = (data, parent) => {
-    if (!_.isObject(data)) {
-      if (typeof data === 'string') {
-        return `'${data}'`;
-      }
-      if (typeof data === 'number' || typeof data === 'boolean' || data === null) {
-        return `${data}`;
-      }
+    if (typeof data === 'string') {
+      return `'${data}'`;
+    }
+    if (typeof data === 'number' || typeof data === 'boolean' || data === null) {
+      return `${data}`;
     }
     const PlainLines = [];
     data.forEach((line) => {
