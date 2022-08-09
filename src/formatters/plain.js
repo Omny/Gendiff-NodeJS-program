@@ -22,10 +22,10 @@ const plain = (diffTree) => {
           break;
         case 'changed':
           statusText = 'was updated.';
-          if (_.isObject(value)) {
-            PlainLines.push(`Property '${fullKey}' ${statusText} From ${iter(oldValue, fullKey)} to [complex value]`);
-          } else if (_.isObject(oldValue)) {
+          if (_.isObject(oldValue)) {
             PlainLines.push(`Property '${fullKey}' ${statusText} From [complex value] to ${iter(value, fullKey)}`);
+          } else if (_.isObject(value)) {
+            PlainLines.push(`Property '${fullKey}' ${statusText} From ${iter(oldValue, fullKey)} to [complex value]`);
           } else {
             PlainLines.push(`Property '${fullKey}' ${statusText} From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`);
           }
