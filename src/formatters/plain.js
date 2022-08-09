@@ -10,7 +10,7 @@ const plain = (diffTree) => {
     }
     const PlainLines = [];
     data.forEach((line) => {
-      const [key, value = '[complex value]', status = 'not changed', oldValue = '[complex value]'] = line;
+      const [key, value, status = 'not changed', oldValue] = line;
       const fullKey = parent ? `${parent}.${key}` : key;
       switch (status) {
         case 'not changed':
