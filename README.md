@@ -20,6 +20,10 @@ Two json or yaml files with tree structure. Output in plain format.
 
 [![asciicast](https://asciinema.org/a/dmIhw07RFq4VACNR1X3QvtWIP.svg)](https://asciinema.org/a/dmIhw07RFq4VACNR1X3QvtWIP)
 
+Two json or yaml files with tree structure. Output in json format.
+
+[![asciicast](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn.svg)](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn)
+
 ## How to install:
 
 make install
