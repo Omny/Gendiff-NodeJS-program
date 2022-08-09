@@ -11,25 +11,19 @@ const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
     const StylishLines = [];
     data.forEach((line) => {
       const [key, value, status = 'not changed', oldValue] = line;
-      let statusSign = '';
       switch (status) {
         case 'not changed':
-          statusSign = ' ';
-          StylishLines.push(`${currentIndent}${statusSign} ${key}: ${iter(value, depth + 1)}`);
+          StylishLines.push(`${currentIndent}  ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'changed':
-          statusSign = '-';
-          StylishLines.push(`${currentIndent}${statusSign} ${key}: ${iter(oldValue, depth + 1)}`);
-          statusSign = '+';
-          StylishLines.push(`${currentIndent}${statusSign} ${key}: ${iter(value, depth + 1)}`);
+          StylishLines.push(`${currentIndent}- ${key}: ${iter(oldValue, depth + 1)}`);
+          StylishLines.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'removed':
-          statusSign = '-';
-          StylishLines.push(`${currentIndent}${statusSign} ${key}: ${iter(value, depth + 1)}`);
+          StylishLines.push(`${currentIndent}- ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'added':
-          statusSign = '+';
-          StylishLines.push(`${currentIndent}${statusSign} ${key}: ${iter(value, depth + 1)}`);
+          StylishLines.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
           break;
         default:
           throw new Error(`Wrong status received: ${status}`);

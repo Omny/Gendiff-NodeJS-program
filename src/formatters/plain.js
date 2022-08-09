@@ -12,34 +12,29 @@ const plain = (diffTree) => {
     data.forEach((line) => {
       const [key, value = '[complex value]', status = 'not changed', oldValue = '[complex value]'] = line;
       const fullKey = parent ? `${parent}.${key}` : key;
-      let statusText = '';
       switch (status) {
         case 'not changed':
-          statusText = 'not changed';
           if (_.isObject(value)) {
             PlainLines.push(`${iter(value, fullKey)}`);
           }
           break;
         case 'changed':
-          statusText = 'was updated.';
           if (_.isObject(oldValue)) {
-            PlainLines.push(`Property '${fullKey}' ${statusText} From [complex value] to ${iter(value, fullKey)}`);
+            PlainLines.push(`Property '${fullKey}' was updated. From [complex value] to ${iter(value, fullKey)}`);
           } else if (_.isObject(value)) {
-            PlainLines.push(`Property '${fullKey}' ${statusText} From ${iter(oldValue, fullKey)} to [complex value]`);
+            PlainLines.push(`Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to [complex value]`);
           } else {
-            PlainLines.push(`Property '${fullKey}' ${statusText} From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`);
+            PlainLines.push(`Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`);
           }
           break;
         case 'removed':
-          statusText = 'was removed';
-          PlainLines.push(`Property '${fullKey}' ${statusText}`);
+          PlainLines.push(`Property '${fullKey}' was removed`);
           break;
         case 'added':
-          statusText = 'was added with value:';
           if (_.isObject(value)) {
-            PlainLines.push(`Property '${fullKey}' ${statusText} [complex value]`);
+            PlainLines.push(`Property '${fullKey}' was added with value: [complex value]`);
           } else {
-            PlainLines.push(`Property '${fullKey}' ${statusText} ${iter(value, fullKey)}`);
+            PlainLines.push(`Property '${fullKey}' was added with value: ${iter(value, fullKey)}`);
           }
           break;
         default:
