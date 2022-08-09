@@ -8,17 +8,17 @@
 
 A program that determines the difference between two data structures.
 
-Two json files with flat structure:
+Two json files with flat structure. Output in stylsh format.
 
 [![asciicast](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL.svg)](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL)
 
-Two yaml files with flat structure:
-
-[![asciicast](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5.svg)](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5)
-
-Two json or yaml files with tree structure:
+Two json or yaml files with tree structure. Output in stylsh format.
 
 [![asciicast](https://asciinema.org/a/KHHe8axKjzc8cOo9RHgvd80vQ.svg)](https://asciinema.org/a/KHHe8axKjzc8cOo9RHgvd80vQ)
+
+Two json or yaml files with tree structure. Output in plain format.
+
+[![asciicast](https://asciinema.org/a/dmIhw07RFq4VACNR1X3QvtWIP.svg)](https://asciinema.org/a/dmIhw07RFq4VACNR1X3QvtWIP)
 
 ## How to install:
 

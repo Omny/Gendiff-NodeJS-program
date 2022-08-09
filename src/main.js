@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import parseData from './parsers.js';
-import formatDiffTree from './formatters.js';
+import formatDiffTree from './formatters/index.js';
 
-const buildDiffTree = (data1, data2, addStatus = true) => {
+const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
   if (!_.isObject(data1)) {
     return data1;
   }
@@ -31,12 +31,23 @@ const buildDiffTree = (data1, data2, addStatus = true) => {
       diffTree.push(newElement);
       return;
     }
+    if (value1 !== undefined && value2 !== undefined) {
+      const newElement = [];
+      newElement[0] = key;
+      newElement[1] = buildDiffTree({}, value2, false);
+      if (addStatus) {
+        newElement[2] = 'changed';
+      }
+      newElement[3] = buildDiffTree(value1, {}, false);
+      diffTree.push(newElement);
+      return;
+    }
     if (value1 !== undefined) {
       const newElement = [];
       newElement[0] = key;
       newElement[1] = buildDiffTree(value1, {}, false);
       if (addStatus) {
-        newElement[2] = -1;
+        newElement[2] = 'removed';
       }
       diffTree.push(newElement);
     }
@@ -45,7 +56,7 @@ const buildDiffTree = (data1, data2, addStatus = true) => {
       newElement[0] = key;
       newElement[1] = buildDiffTree({}, value2, false);
       if (addStatus) {
-        newElement[2] = 1;
+        newElement[2] = 'added';
       }
       diffTree.push(newElement);
     }
@@ -53,7 +64,7 @@ const buildDiffTree = (data1, data2, addStatus = true) => {
   return diffTree;
 };
 
-const gendiff = (path1, path2, format = 'stylish') => {
+const gendiff = (path1, path2, formatName = 'stylish') => {
   const fullPath1 = path.resolve(process.cwd(), path1);
   const fullPath2 = path.resolve(process.cwd(), path2);
   const file1 = fs.readFileSync(fullPath1, 'utf-8');
@@ -63,7 +74,7 @@ const gendiff = (path1, path2, format = 'stylish') => {
   const data1 = parseData(file1, file1Extension);
   const data2 = parseData(file2, file2Extension);
   const diffTree = buildDiffTree(data1, data2);
-  return formatDiffTree(diffTree, format);
+  return formatDiffTree(diffTree, formatName);
 };
 
 export default gendiff;
