@@ -5,7 +5,7 @@ const plain = (diffTree) => {
     if (typeof data === 'string') {
       return `'${data}'`;
     }
-    if (typeof data === 'number' || typeof data === 'boolean' || data === null) {
+    if (!_.isObject(data)) {
       return `${data}`;
     }
     const PlainLines = [];
