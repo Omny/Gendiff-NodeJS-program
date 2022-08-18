@@ -1,18 +1,22 @@
 import _ from 'lodash';
 
+const valueToStr = (value) => {
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
+  if (_.isObject(value)) {
+    return '[complex value]';
+  }
+  return `${value}`;
+};
+
 const plain = (diffTree) => {
   const iter = (data, parent) => {
-    if (typeof data === 'string') {
-      return `'${data}'`;
-    }
-    if (!_.isObject(data)) {
-      return `${data}`;
-    }
     const plainLines = data.reduce((result, line) => {
       const [key, value, status, oldValue] = line;
       const fullKey = parent ? `${parent}.${key}` : key;
-      const plainValue = _.isObject(value) ? '[complex value]' : iter(value, fullKey);
-      const plainOldValue = _.isObject(oldValue) ? '[complex value]' : iter(oldValue, fullKey);
+      const plainValue = valueToStr(value);
+      const plainOldValue = valueToStr(oldValue);
       switch (status) {
         case 'not changed':
           return _.isObject(value) ? [...result, `${iter(value, fullKey)}`] : result;
