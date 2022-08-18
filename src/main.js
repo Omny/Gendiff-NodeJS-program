@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parseData from './parsers.js';
-import buildDiffTree from './buildDiffTree.js'
+import buildDiffTree from './buildDiffTree.js';
 import formatDiffTree from './formatters/index.js';
 
 const gendiff = (path1, path2, formatName = 'stylish') => {
