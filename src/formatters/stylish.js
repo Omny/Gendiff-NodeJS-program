@@ -10,28 +10,21 @@ const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
     const bracketIndent = replacer.repeat(indentSize - 2);
     const stylishLines = data.reduce((result, line) => {
       const [key, value, status = 'not changed', oldValue] = line;
+      const stylishValue = iter(value, depth + 1);
+      const stylishOldValue = iter(oldValue, depth + 1);
       switch (status) {
         case 'not changed':
-          return [
-            ...result,
-            `${currentIndent}  ${key}: ${iter(value, depth + 1)}`,
-          ];
+          return [...result, `${currentIndent}  ${key}: ${stylishValue}`];
         case 'changed':
           return [
             ...result,
-            `${currentIndent}- ${key}: ${iter(oldValue, depth + 1)}`,
-            `${currentIndent}+ ${key}: ${iter(value, depth + 1)}`,
+            `${currentIndent}- ${key}: ${stylishOldValue}`,
+            `${currentIndent}+ ${key}: ${stylishValue}`,
           ];
         case 'removed':
-          return [
-            ...result,
-            `${currentIndent}- ${key}: ${iter(value, depth + 1)}`,
-          ];
+          return [...result, `${currentIndent}- ${key}: ${stylishValue}`];
         case 'added':
-          return [
-            ...result,
-            `${currentIndent}+ ${key}: ${iter(value, depth + 1)}`,
-          ];
+          return [...result, `${currentIndent}+ ${key}: ${stylishValue}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
