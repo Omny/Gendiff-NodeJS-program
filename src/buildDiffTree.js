@@ -9,40 +9,34 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
   }
   const allKeys = _.union(Object.keys(data1), Object.keys(data2));
   const sortedKeys = _.sortBy(allKeys);
-
   return sortedKeys.reduce((result, key) => {
     const value1 = data1[key];
     const value2 = data2[key];
     if (_.isObject(value1) && _.isObject(value2)) {
       const currentValue = buildDiffTree(value1, value2);
       const status = 'not changed';
-      const newElement = [key, currentValue, status];
-      return [...result, newElement];
+      return [...result, [key, currentValue, status]];
     }
     if (value1 === value2) {
       const currentValue = buildDiffTree(value1, {});
       const status = 'not changed';
-      const newElement = [key, currentValue, status];
-      return [...result, newElement];
+      return [...result, [key, currentValue, status]];
     }
     if (value1 !== undefined && value2 !== undefined) {
       const currentValue = buildDiffTree({}, value2, false);
       const status = addStatus ? 'changed' : 'not changed';
       const oldValue = buildDiffTree(value1, {}, false);
-      const newElement = [key, currentValue, status, oldValue];
-      return [...result, newElement];
+      return [...result, [key, currentValue, status, oldValue]];
     }
     if (value1 !== undefined) {
       const currentValue = buildDiffTree(value1, {}, false);
       const status = addStatus ? 'removed' : 'not changed';
-      const newElement = [key, currentValue, status];
-      return [...result, newElement];
+      return [...result, [key, currentValue, status]];
     }
     if (value2 !== undefined) {
       const currentValue = buildDiffTree({}, value2, false);
       const status = addStatus ? 'added' : 'not changed';
-      const newElement = [key, currentValue, status];
-      return [...result, newElement];
+      return [...result, [key, currentValue, status]];
     }
     return result;
   }, []);
