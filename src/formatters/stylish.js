@@ -8,28 +8,28 @@ const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
     const indentSize = (spacesCount * depth) - 2;
     const currentIndent = replacer.repeat(indentSize);
     const bracketIndent = replacer.repeat(indentSize - 2);
-    const StylishLines = [];
-    data.forEach((line) => {
+    const stylishLines = data.reduce((result, line) => {
       const [key, value, status = 'not changed', oldValue] = line;
       switch (status) {
         case 'not changed':
-          StylishLines.push(`${currentIndent}  ${key}: ${iter(value, depth + 1)}`);
+          result.push(`${currentIndent}  ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'changed':
-          StylishLines.push(`${currentIndent}- ${key}: ${iter(oldValue, depth + 1)}`);
-          StylishLines.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
+          result.push(`${currentIndent}- ${key}: ${iter(oldValue, depth + 1)}`);
+          result.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'removed':
-          StylishLines.push(`${currentIndent}- ${key}: ${iter(value, depth + 1)}`);
+          result.push(`${currentIndent}- ${key}: ${iter(value, depth + 1)}`);
           break;
         case 'added':
-          StylishLines.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
+          result.push(`${currentIndent}+ ${key}: ${iter(value, depth + 1)}`);
           break;
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
-    });
-    const joinedText = StylishLines.join('\n');
+      return result;
+    }, []);
+    const joinedText = stylishLines.join('\n');
     return `{\n${joinedText}\n${bracketIndent}}`;
   };
   return iter(diffTree, 1);
