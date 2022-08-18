@@ -9,8 +9,8 @@ const gendiff = (path1, path2, formatName = 'stylish') => {
   const fullPath2 = path.resolve(process.cwd(), path2);
   const file1 = fs.readFileSync(fullPath1, 'utf-8');
   const file2 = fs.readFileSync(fullPath2, 'utf-8');
-  const file1Extension = path.extname(fullPath1);
-  const file2Extension = path.extname(fullPath1);
+  const file1Extension = path.extname(fullPath1).slice(1);
+  const file2Extension = path.extname(fullPath1).slice(1);
   const data1 = parseData(file1, file1Extension);
   const data2 = parseData(file2, file2Extension);
   const diffTree = buildDiffTree(data1, data2);

@@ -1,12 +1,12 @@
 import yaml from 'js-yaml';
 
-const parseData = (file, extension) => {
+const parseData = (data, extension) => {
   switch (extension) {
-    case '.json':
-      return JSON.parse(file);
-    case '.yml':
-    case '.yaml':
-      return yaml.load(file);
+    case 'json':
+      return JSON.parse(data);
+    case 'yml':
+    case 'yaml':
+      return yaml.load(data);
     default:
       throw new Error(`Wrong file extension: ${extension}`);
   }
