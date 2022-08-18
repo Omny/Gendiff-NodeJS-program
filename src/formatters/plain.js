@@ -5,37 +5,26 @@ const plain = (diffTree) => {
     if (typeof data === 'string') {
       return `'${data}'`;
     }
-    if (typeof data === 'number' || typeof data === 'boolean' || data === null) {
+    if (typeof data === 'number' || typeof data === 'boolean' || data === null || data === undefined) {
       return `${data}`;
     }
     const plainLines = data.reduce((result, line) => {
       const [key, value, status = 'not changed', oldValue] = line;
       const fullKey = parent ? `${parent}.${key}` : key;
+      const plainValue = _.isObject(value) ? '[complex value]' : iter(value, fullKey);
+      const plainOldValue = _.isObject(oldValue) ? '[complex value]' : iter(oldValue, fullKey);
       switch (status) {
         case 'not changed':
-          if (_.isObject(value)) {
-            return [...result, `${iter(value, fullKey)}`];
-          }
-          break;
+          return _.isObject(value) ? [...result, `${iter(value, fullKey)}`] : result;
         case 'changed':
-          if (_.isObject(oldValue)) {
-            return [...result, `Property '${fullKey}' was updated. From [complex value] to ${iter(value, fullKey)}`];
-          }
-          if (_.isObject(value)) {
-            return [...result, `Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to [complex value]`];
-          }
-          return [...result, `Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`];
+          return [...result, `Property '${fullKey}' was updated. From ${plainOldValue} to ${plainValue}`];
         case 'removed':
           return [...result, `Property '${fullKey}' was removed`];
         case 'added':
-          if (_.isObject(value)) {
-            return [...result, `Property '${fullKey}' was added with value: [complex value]`];
-          }
-          return [...result, `Property '${fullKey}' was added with value: ${iter(value, fullKey)}`];
+          return [...result, `Property '${fullKey}' was added with value: ${plainValue}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
-      return result;
     }, []);
     const joinedText = plainLines.join('\n');
     return `${joinedText}`;
