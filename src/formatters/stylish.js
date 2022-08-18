@@ -9,7 +9,7 @@ const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
     const currentIndent = replacer.repeat(indentSize);
     const bracketIndent = replacer.repeat(indentSize - 2);
     const stylishLines = data.reduce((result, line) => {
-      const [key, value, status = 'not changed', oldValue] = line;
+      const [key, value, status, oldValue] = line;
       const stylishValue = iter(value, depth + 1);
       const stylishOldValue = iter(oldValue, depth + 1);
       switch (status) {

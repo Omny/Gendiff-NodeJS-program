@@ -5,11 +5,11 @@ const plain = (diffTree) => {
     if (typeof data === 'string') {
       return `'${data}'`;
     }
-    if (typeof data === 'number' || typeof data === 'boolean' || data === null || data === undefined) {
+    if (!_.isObject(data)) {
       return `${data}`;
     }
     const plainLines = data.reduce((result, line) => {
-      const [key, value, status = 'not changed', oldValue] = line;
+      const [key, value, status, oldValue] = line;
       const fullKey = parent ? `${parent}.${key}` : key;
       const plainValue = _.isObject(value) ? '[complex value]' : iter(value, fullKey);
       const plainOldValue = _.isObject(oldValue) ? '[complex value]' : iter(oldValue, fullKey);
@@ -27,7 +27,7 @@ const plain = (diffTree) => {
       }
     }, []);
     const joinedText = plainLines.join('\n');
-    return `${joinedText}`;
+    return joinedText;
   };
   return iter(diffTree);
 };
