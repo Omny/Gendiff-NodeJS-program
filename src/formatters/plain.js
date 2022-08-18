@@ -14,28 +14,24 @@ const plain = (diffTree) => {
       switch (status) {
         case 'not changed':
           if (_.isObject(value)) {
-            result.push(`${iter(value, fullKey)}`);
+            return [...result, `${iter(value, fullKey)}`];
           }
           break;
         case 'changed':
           if (_.isObject(oldValue)) {
-            result.push(`Property '${fullKey}' was updated. From [complex value] to ${iter(value, fullKey)}`);
-          } else if (_.isObject(value)) {
-            result.push(`Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to [complex value]`);
-          } else {
-            result.push(`Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`);
+            return [...result, `Property '${fullKey}' was updated. From [complex value] to ${iter(value, fullKey)}`];
           }
-          break;
+          if (_.isObject(value)) {
+            return [...result, `Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to [complex value]`];
+          }
+          return [...result, `Property '${fullKey}' was updated. From ${iter(oldValue, fullKey)} to ${iter(value, fullKey)}`];
         case 'removed':
-          result.push(`Property '${fullKey}' was removed`);
-          break;
+          return [...result, `Property '${fullKey}' was removed`];
         case 'added':
           if (_.isObject(value)) {
-            result.push(`Property '${fullKey}' was added with value: [complex value]`);
-          } else {
-            result.push(`Property '${fullKey}' was added with value: ${iter(value, fullKey)}`);
+            return [...result, `Property '${fullKey}' was added with value: [complex value]`];
           }
-          break;
+          return [...result, `Property '${fullKey}' was added with value: ${iter(value, fullKey)}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
