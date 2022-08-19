@@ -25,11 +25,8 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
       const status = addStatus ? 'removed' : 'not changed';
       return [...result, [key, oldValue, status]];
     }
-    if (value2 !== undefined) {
-      const status = addStatus ? 'added' : 'not changed';
-      return [...result, [key, currentValue, status]];
-    }
-    return result;
+    const status = addStatus ? 'added' : 'not changed';
+    return [...result, [key, currentValue, status]];
   }, []);
 };
 
