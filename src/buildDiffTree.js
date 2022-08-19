@@ -7,7 +7,7 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
     const value1 = data1[key];
     const value2 = data2[key];
     if (_.isObject(value1) && _.isObject(value2)) {
-      const currentValue = buildDiffTree(value1, value2, true);
+      const currentValue = buildDiffTree(value1, value2);
       const status = 'not changed';
       return [...result, [key, currentValue, status]];
     }
