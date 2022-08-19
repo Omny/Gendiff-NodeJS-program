@@ -24,7 +24,7 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
     }
     if (value1 !== undefined && value2 !== undefined) {
       const currentValue = buildDiffTree({}, value2, false);
-      const status = addStatus ? 'changed' : 'not changed';
+      const status = 'changed';
       const oldValue = buildDiffTree(value1, {}, false);
       return [...result, [key, currentValue, status, oldValue]];
     }
