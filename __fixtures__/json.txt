@@ -1,0 +1,152 @@
+[
+ [
+  "common",
+  [
+   [
+    "follow",
+    false,
+    "added"
+   ],
+   [
+    "setting1",
+    "Value 1",
+    "not changed"
+   ],
+   [
+    "setting2",
+    200,
+    "removed"
+   ],
+   [
+    "setting3",
+    null,
+    "changed",
+    true
+   ],
+   [
+    "setting4",
+    "blah blah",
+    "added"
+   ],
+   [
+    "setting5",
+    [
+     [
+      "key5",
+      "value5",
+      "not changed"
+     ]
+    ],
+    "added"
+   ],
+   [
+    "setting6",
+    [
+     [
+      "doge",
+      [
+       [
+        "wow",
+        "so much",
+        "changed",
+        ""
+       ]
+      ],
+      "not changed"
+     ],
+     [
+      "key",
+      "value",
+      "not changed"
+     ],
+     [
+      "ops",
+      "vops",
+      "added"
+     ]
+    ],
+    "not changed"
+   ]
+  ],
+  "not changed"
+ ],
+ [
+  "group1",
+  [
+   [
+    "baz",
+    "bars",
+    "changed",
+    "bas"
+   ],
+   [
+    "foo",
+    "bar",
+    "not changed"
+   ],
+   [
+    "nest",
+    "str",
+    "changed",
+    [
+     [
+      "key",
+      "value",
+      "not changed"
+     ]
+    ]
+   ]
+  ],
+  "not changed"
+ ],
+ [
+  "group2",
+  [
+   [
+    "abc",
+    12345,
+    "not changed"
+   ],
+   [
+    "deep",
+    [
+     [
+      "id",
+      45,
+      "not changed"
+     ]
+    ],
+    "not changed"
+   ]
+  ],
+  "removed"
+ ],
+ [
+  "group3",
+  [
+   [
+    "deep",
+    [
+     [
+      "id",
+      [
+       [
+        "number",
+        45,
+        "not changed"
+       ]
+      ],
+      "not changed"
+     ]
+    ],
+    "not changed"
+   ],
+   [
+    "fee",
+    100500,
+    "not changed"
+   ]
+  ],
+  "added"
+ ]
+]
