@@ -8,6 +8,14 @@
 
 A program that determines the difference between two data structures.
 
+## How to install:
+
+make install
+
+npm link
+
+## How to use:
+
 Two json files with flat structure. Output in stylsh format.
 
 [![asciicast](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL.svg)](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL)
@@ -28,13 +36,6 @@ Two json or yaml files with tree structure. Output in json format.
 
 [![asciicast](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn.svg)](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn)
 
-## How to install:
-
-make install
-
-npm link
-
-## How to use:
 
 ### Stylish format
 
