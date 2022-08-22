@@ -16,15 +16,15 @@ npm link
 
 ## How to use:
 
-Two json files with flat structure. Output in stylsh format.
+Two json files with flat structure. Output in stylish format.
 
 [![asciicast](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL.svg)](https://asciinema.org/a/MrBYtXgD9myEOkl9KyjdjarqL)
 
-Two yaml files with flat structure. Output in stylsh format.
+Two yaml files with flat structure. Output in stylish format.
 
 [![asciicast](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5.svg)](https://asciinema.org/a/HclhvI0ZzoNKCYnumRbQOQcA5)
 
-Two json or yaml files with tree structure. Output in stylsh format.
+Two json or yaml files with tree structure. Output in stylish format.
 
 [![asciicast](https://asciinema.org/a/KHHe8axKjzc8cOo9RHgvd80vQ.svg)](https://asciinema.org/a/KHHe8axKjzc8cOo9RHgvd80vQ)
 
