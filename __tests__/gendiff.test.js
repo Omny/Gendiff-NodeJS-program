@@ -10,14 +10,14 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 describe.each([
-  ['file1.json', 'file2.json', 'stylish', 'stylish.txt'],
-  ['file1.json', 'file2.json', 'plain', 'plain.txt'],
-  ['file1.json', 'file2.json', 'json', 'json.txt'],
-  ['file1.yaml', 'file2.yaml', 'stylish', 'stylish.txt'],
-  ['file1.yaml', 'file2.yaml', 'plain', 'plain.txt'],
-  ['file1.yaml', 'file2.yaml', 'json', 'json.txt'],
-])('Gendiff two files: %s & %s', (file1, file2, format, expectedFile) => {
-  test(`in ${format} format`, () => {
+  ['stylish', 'file1.json', 'file2.json', 'stylish.txt'],
+  ['stylish', 'file1.yaml', 'file2.yaml', 'stylish.txt'],
+  ['plain', 'file1.json', 'file2.json', 'plain.txt'],
+  ['plain', 'file1.yaml', 'file2.yaml', 'plain.txt'],
+  ['json', 'file1.json', 'file2.json', 'json.txt'],
+  ['json', 'file1.yaml', 'file2.yaml', 'json.txt'],
+])('Gendiff two files in %s format:', (format, file1, file2, expectedFile) => {
+  test(`${file1} & ${file2} are matched ${expectedFile}`, () => {
     expect(gendiff(getFixturePath(file1), getFixturePath(file2), format)).toBe(
       readFile(expectedFile),
     );
