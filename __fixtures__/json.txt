@@ -52,7 +52,7 @@
         ""
        ]
       ],
-      "not changed"
+      "nested"
      ],
      [
       "key",
@@ -65,10 +65,10 @@
       "added"
      ]
     ],
-    "not changed"
+    "nested"
    ]
   ],
-  "not changed"
+  "nested"
  ],
  [
   "group1",
@@ -97,7 +97,7 @@
     ]
    ]
   ],
-  "not changed"
+  "nested"
  ],
  [
   "group2",
