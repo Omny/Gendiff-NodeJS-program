@@ -1,34 +1,41 @@
 import _ from 'lodash';
 
-const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
-  const iter = (data, depth) => {
-    const indentSize = spacesCount * depth - 2;
-    const currentIndent = replacer.repeat(indentSize);
-    const bracketIndent = replacer.repeat(indentSize - 2);
-    const stylishLines = data.reduce((result, line) => {
+const getLineIndent = (depth) => ('    '.repeat(depth).slice(2));
+const getBracketIndent = (depth) => ('    '.repeat(depth).slice(4));
+
+const stringify = (element, depth = 0) => {
+  if (_.isObject(element)) {
+    const lines = Object.entries(element).map(([key, value]) => `${getLineIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
+    const combinedLines = lines.join('\n');
+    return `{\n${combinedLines}\n${getBracketIndent(depth)}}`;
+  }
+  return element;
+};
+
+const stylish = (diffTree) => {
+  const iter = (data, depth = 0) => {
+    const lines = data.reduce((result, line) => {
       const [key, newValue, status, oldValue] = line;
-      const stylishNewValue = _.isObject(newValue) ? iter(newValue, depth + 1) : newValue;
-      const stylishOldValue = _.isObject(oldValue) ? iter(oldValue, depth + 1) : oldValue;
       switch (status) {
         case 'nested':
-          return [...result, `${currentIndent}  ${key}: ${stylishNewValue}`];
+          return [...result, `${getLineIndent(depth)}  ${key}: ${iter(newValue, depth + 1)}`];
         case 'not changed':
-          return [...result, `${currentIndent}  ${key}: ${stylishNewValue}`];
+          return [...result, `${getLineIndent(depth)}  ${key}: ${stringify(newValue, depth + 1)}`];
         case 'changed':
           return [...result,
-            `${currentIndent}- ${key}: ${stylishOldValue}`,
-            `${currentIndent}+ ${key}: ${stylishNewValue}`,
+            `${getLineIndent(depth)}- ${key}: ${stringify(oldValue, depth + 1)}`,
+            `${getLineIndent(depth)}+ ${key}: ${stringify(newValue, depth + 1)}`,
           ];
         case 'removed':
-          return [...result, `${currentIndent}- ${key}: ${stylishNewValue}`];
+          return [...result, `${getLineIndent(depth)}- ${key}: ${stringify(newValue, depth + 1)}`];
         case 'added':
-          return [...result, `${currentIndent}+ ${key}: ${stylishNewValue}`];
+          return [...result, `${getLineIndent(depth)}+ ${key}: ${stringify(newValue, depth + 1)}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
     }, []);
-    const joinedText = stylishLines.join('\n');
-    return `{\n${joinedText}\n${bracketIndent}}`;
+    const combinedLines = lines.join('\n');
+    return `{\n${combinedLines}\n${getBracketIndent(depth)}}`;
   };
   return iter(diffTree, 1);
 };

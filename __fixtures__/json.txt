@@ -30,13 +30,9 @@
    ],
    [
     "setting5",
-    [
-     [
-      "key5",
-      "value5",
-      "not changed"
-     ]
-    ],
+    {
+     "key5": "value5"
+    },
     "added"
    ],
    [
@@ -88,65 +84,33 @@
     "nest",
     "str",
     "changed",
-    [
-     [
-      "key",
-      "value",
-      "not changed"
-     ]
-    ]
+    {
+     "key": "value"
+    }
    ]
   ],
   "nested"
  ],
  [
   "group2",
-  [
-   [
-    "abc",
-    12345,
-    "not changed"
-   ],
-   [
-    "deep",
-    [
-     [
-      "id",
-      45,
-      "not changed"
-     ]
-    ],
-    "not changed"
-   ]
-  ],
+  {
+   "abc": 12345,
+   "deep": {
+    "id": 45
+   }
+  },
   "removed"
  ],
  [
   "group3",
-  [
-   [
-    "deep",
-    [
-     [
-      "id",
-      [
-       [
-        "number",
-        45,
-        "not changed"
-       ]
-      ],
-      "not changed"
-     ]
-    ],
-    "not changed"
-   ],
-   [
-    "fee",
-    100500,
-    "not changed"
-   ]
-  ],
+  {
+   "deep": {
+    "id": {
+     "number": 45
+    }
+   },
+   "fee": 100500
+  },
   "added"
  ]
 ]

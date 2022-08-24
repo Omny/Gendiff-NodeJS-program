@@ -12,7 +12,7 @@ const valueToStr = (value) => {
 
 const plain = (diffTree) => {
   const iter = (data, parent) => {
-    const plainLines = data.reduce((result, line) => {
+    const lines = data.reduce((result, line) => {
       const [key, newValue, status, oldValue] = line;
       const fullPath = parent ? `${parent}.${key}` : key;
       switch (status) {
@@ -30,8 +30,8 @@ const plain = (diffTree) => {
           throw new Error(`Wrong status received: ${status}`);
       }
     }, []);
-    const joinedText = plainLines.join('\n');
-    return joinedText;
+    const combinedLines = lines.join('\n');
+    return combinedLines;
   };
   return iter(diffTree);
 };

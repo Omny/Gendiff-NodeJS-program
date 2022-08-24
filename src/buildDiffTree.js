@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
+const buildDiffTree = (data1, data2) => {
   const allKeys = _.union(Object.keys(data1), Object.keys(data2));
   const sortedKeys = _.sortBy(allKeys);
   return sortedKeys.reduce((result, key) => {
@@ -11,8 +11,8 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
       const status = 'nested';
       return [...result, [key, newValue, status]];
     }
-    const newValue = _.isObject(value2) ? buildDiffTree(value1, value2, false) : value2;
-    const oldValue = _.isObject(value1) ? buildDiffTree(value1, {}, false) : value1;
+    const newValue = value2;
+    const oldValue = value1;
     if (value1 === value2) {
       const status = 'not changed';
       return [...result, [key, newValue, status]];
@@ -22,10 +22,10 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
       return [...result, [key, newValue, status, oldValue]];
     }
     if (value1 !== undefined) {
-      const status = addStatus ? 'removed' : 'not changed';
+      const status = 'removed';
       return [...result, [key, oldValue, status]];
     }
-    const status = addStatus ? 'added' : 'not changed';
+    const status = 'added';
     return [...result, [key, newValue, status]];
   }, []);
 };
