@@ -1,33 +1,30 @@
 import _ from 'lodash';
 
-const valueToStr = (valueAfter) => {
-  if (typeof valueAfter === 'string') {
-    return `'${valueAfter}'`;
+const valueToStr = (value) => {
+  if (typeof value === 'string') {
+    return `'${value}'`;
   }
-  if (_.isObject(valueAfter)) {
+  if (_.isObject(value)) {
     return '[complex value]';
   }
-  return `${valueAfter}`;
+  return `${value}`;
 };
 
 const plain = (diffTree) => {
   const iter = (data, parent) => {
     const plainLines = data.reduce((result, line) => {
-      const [key, valueAfter, status, valueBefore] = line;
-      const fullKey = parent ? `${parent}.${key}` : key;
-      const plainValueAfter = valueToStr(valueAfter);
-      const plainValueBefore = valueToStr(valueBefore);
+      const [key, newValue, status, oldValue] = line;
+      const fullPath = parent ? `${parent}.${key}` : key;
       switch (status) {
         case 'nested':
-          return _.isObject(valueAfter) ? [...result, `${iter(valueAfter, fullKey)}`] : result;
         case 'not changed':
-          return _.isObject(valueAfter) ? [...result, `${iter(valueAfter, fullKey)}`] : result;
+          return _.isObject(newValue) ? [...result, `${iter(newValue, fullPath)}`] : result;
         case 'changed':
-          return [...result, `Property '${fullKey}' was updated. From ${plainValueBefore} to ${plainValueAfter}`];
+          return [...result, `Property '${fullPath}' was updated. From ${valueToStr(oldValue)} to ${valueToStr(newValue)}`];
         case 'removed':
-          return [...result, `Property '${fullKey}' was removed`];
+          return [...result, `Property '${fullPath}' was removed`];
         case 'added':
-          return [...result, `Property '${fullKey}' was added with value: ${plainValueAfter}`];
+          return [...result, `Property '${fullPath}' was added with value: ${valueToStr(newValue)}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }

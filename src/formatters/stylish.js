@@ -6,23 +6,23 @@ const stylish = (diffTree, replacer = ' ', spacesCount = 4) => {
     const currentIndent = replacer.repeat(indentSize);
     const bracketIndent = replacer.repeat(indentSize - 2);
     const stylishLines = data.reduce((result, line) => {
-      const [key, valueAfter, status, valueBefore] = line;
-      const stylishValueAfter = _.isObject(valueAfter) ? iter(valueAfter, depth + 1) : valueAfter;
-      const stylishValueBefore = _.isObject(valueBefore) ? iter(valueBefore, depth + 1) : valueBefore;
+      const [key, newValue, status, oldValue] = line;
+      const stylishNewValue = _.isObject(newValue) ? iter(newValue, depth + 1) : newValue;
+      const stylishOldValue = _.isObject(oldValue) ? iter(oldValue, depth + 1) : oldValue;
       switch (status) {
         case 'nested':
-          return [...result, `${currentIndent}  ${key}: ${stylishValueAfter}`];
+          return [...result, `${currentIndent}  ${key}: ${stylishNewValue}`];
         case 'not changed':
-          return [...result, `${currentIndent}  ${key}: ${stylishValueAfter}`];
+          return [...result, `${currentIndent}  ${key}: ${stylishNewValue}`];
         case 'changed':
           return [...result,
-            `${currentIndent}- ${key}: ${stylishValueBefore}`,
-            `${currentIndent}+ ${key}: ${stylishValueAfter}`,
+            `${currentIndent}- ${key}: ${stylishOldValue}`,
+            `${currentIndent}+ ${key}: ${stylishNewValue}`,
           ];
         case 'removed':
-          return [...result, `${currentIndent}- ${key}: ${stylishValueAfter}`];
+          return [...result, `${currentIndent}- ${key}: ${stylishNewValue}`];
         case 'added':
-          return [...result, `${currentIndent}+ ${key}: ${stylishValueAfter}`];
+          return [...result, `${currentIndent}+ ${key}: ${stylishNewValue}`];
         default:
           throw new Error(`Wrong status received: ${status}`);
       }
