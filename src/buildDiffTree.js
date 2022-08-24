@@ -8,7 +8,7 @@ const buildDiffTree = (data1 = {}, data2 = {}, addStatus = true) => {
     const value2 = data2[key];
     if (_.isObject(value1) && _.isObject(value2)) {
       const valueAfter = buildDiffTree(value1, value2);
-      const status = 'not changed';
+      const status = 'nested';
       return [...result, [key, valueAfter, status]];
     }
     const valueAfter = _.isObject(value2) ? buildDiffTree(value1, value2, false) : value2;
