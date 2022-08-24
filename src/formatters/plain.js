@@ -17,8 +17,9 @@ const plain = (diffTree) => {
       const fullPath = parent ? `${parent}.${key}` : key;
       switch (status) {
         case 'nested':
+          return [...result, `${iter(newValue, fullPath)}`];
         case 'not changed':
-          return _.isObject(newValue) ? [...result, `${iter(newValue, fullPath)}`] : result;
+          return result;
         case 'changed':
           return [...result, `Property '${fullPath}' was updated. From ${valueToStr(oldValue)} to ${valueToStr(newValue)}`];
         case 'removed':
