@@ -16,7 +16,6 @@ const gendiff = (filePath1, filePath2, formatName = 'stylish') => {
   const data1 = getDataFromFile(getFullFilePath(filePath1));
   const data2 = getDataFromFile(getFullFilePath(filePath2));
   const diffTree = buildDiffTree(data1, data2);
-  // console.log(JSON.stringify(diffTree, null, ' '));
   return formatDiffTree(diffTree, formatName);
 };
 
