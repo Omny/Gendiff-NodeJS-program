@@ -10,13 +10,13 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 describe.each([['stylish'], ['plain'], ['json']])('Gendiff two files in %s format:', (formatName) => {
-  const expectetData = readFile(`${formatName}.txt`);
+  const expectedData = readFile(`${formatName}.txt`);
 
   test.each([['json'], ['yaml']])('%s files', (extension) => {
     const filePath1 = getFixturePath(`file1.${extension}`);
     const filePath2 = getFixturePath(`file2.${extension}`);
     const resultData = gendiff(filePath1, filePath2, formatName);
 
-    expect(resultData).toBe(expectetData);
+    expect(resultData).toBe(expectedData);
   });
 });
