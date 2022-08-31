@@ -10,7 +10,7 @@ const valueToStr = (value) => {
   return `${value}`;
 };
 
-const plain = (diffTree) => {
+const formatToPlain = (diffTree) => {
   const iter = (data, parent) => {
     const lines = data.reduce((result, line) => {
       const [key, newValue, status, oldValue] = line;
@@ -36,4 +36,4 @@ const plain = (diffTree) => {
   return iter(diffTree);
 };
 
-export default plain;
+export default formatToPlain;

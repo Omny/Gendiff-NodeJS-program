@@ -11,7 +11,7 @@ const stringify = (element, depth = 0) => {
   return element;
 };
 
-const stylish = (diffTree) => {
+const formatToStylish = (diffTree) => {
   const iter = (data, depth = 0) => {
     const lines = data.reduce((result, line) => {
       const [key, newValue, status, oldValue] = line;
@@ -39,4 +39,4 @@ const stylish = (diffTree) => {
   return iter(diffTree, 0);
 };
 
-export default stylish;
+export default formatToStylish;

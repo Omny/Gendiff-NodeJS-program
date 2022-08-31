@@ -1,15 +1,15 @@
-import stylish from './stylish.js';
-import plain from './plain.js';
-import json from './json.js';
+import formatToStylish from './stylish.js';
+import formatToPlain from './plain.js';
+import formatToJson from './json.js';
 
 const formatDiffTree = (diffTree, formatName) => {
   switch (formatName) {
     case 'stylish':
-      return stylish(diffTree);
+      return formatToStylish(diffTree);
     case 'plain':
-      return plain(diffTree);
+      return formatToPlain(diffTree);
     case 'json':
-      return json(diffTree);
+      return formatToJson(diffTree);
     default:
       throw new Error(`Wrong format name: ${formatName}`);
   }
