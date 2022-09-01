@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install
-      - run: make install
+        run: make install
 
       - name: Lint
-      - run: make lint
+        run: make lint
 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
