@@ -30,8 +30,7 @@ const formatToPlain = (diffTree) => {
           throw new Error(`Wrong status received: ${status}`);
       }
     }, []);
-    const combinedLines = lines.join('\n');
-    return combinedLines;
+    return lines.join('\n');
   };
   return iter(diffTree);
 };
