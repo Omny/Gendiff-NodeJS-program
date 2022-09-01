@@ -3,9 +3,6 @@ name: Github actions
 on:
   - push
 
-env:
-  CI: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +12,7 @@ jobs:
       - name: Install
       - run: make install
 
+      - name: Lint
       - run: make lint
 
       - name: Test & publish code coverage
