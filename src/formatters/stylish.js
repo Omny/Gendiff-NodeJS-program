@@ -26,7 +26,7 @@ const formatToStylish = (diffTree) => {
             `${getIndent(depth)}  + ${key}: ${stringify(newValue, depth + 1)}`,
           ];
         case 'removed':
-          return [...result, `${getIndent(depth)}  - ${key}: ${stringify(newValue, depth + 1)}`];
+          return [...result, `${getIndent(depth)}  - ${key}: ${stringify(oldValue, depth + 1)}`];
         case 'added':
           return [...result, `${getIndent(depth)}  + ${key}: ${stringify(newValue, depth + 1)}`];
         default:

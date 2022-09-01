@@ -10,20 +10,12 @@ const buildDiffTree = (data1, data2) => {
       const status = 'nested';
       return [...result, [key, buildDiffTree(oldValue, newValue), status]];
     }
-    if (oldValue === newValue) {
-      const status = 'not changed';
+    if (oldValue === undefined || oldValue === newValue) {
+      const status = (oldValue === undefined) ? 'added' : 'not changed';
       return [...result, [key, newValue, status]];
     }
-    if (oldValue !== undefined && newValue !== undefined) {
-      const status = 'changed';
-      return [...result, [key, newValue, status, oldValue]];
-    }
-    if (oldValue !== undefined) {
-      const status = 'removed';
-      return [...result, [key, oldValue, status]];
-    }
-    const status = 'added';
-    return [...result, [key, newValue, status]];
+    const status = (newValue === undefined) ? 'removed' : 'changed';
+    return [...result, [key, newValue, status, oldValue]];
   }, []);
 };
 

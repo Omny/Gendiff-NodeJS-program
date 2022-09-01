@@ -14,8 +14,9 @@
    ],
    [
     "setting2",
-    200,
-    "removed"
+    null,
+    "removed",
+    200
    ],
    [
     "setting3",
@@ -93,13 +94,14 @@
  ],
  [
   "group2",
+  null,
+  "removed",
   {
    "abc": 12345,
    "deep": {
     "id": 45
    }
-  },
-  "removed"
+  }
  ],
  [
   "group3",
