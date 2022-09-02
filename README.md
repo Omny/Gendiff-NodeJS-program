@@ -8,6 +8,10 @@
 
 A program that determines the difference between two data structures.
 
+## Requirements
+
+Node.js v14 and higher.
+
 ## How to install:
 
 make install
@@ -29,7 +33,7 @@ Two json or yaml files with tree structure. Output in json format.
 [![asciicast](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn.svg)](https://asciinema.org/a/yMa0u3hD4RxgKS9UOkMTjBiyn)
 
 
-### Stylish format
+### Stylish format (default)
 
 gendiff filepath1.json filepath2.json
 
