@@ -8,6 +8,8 @@
 
 A program that determines the difference between two data structures.
 
+In this project, I improved my skills in developing complex architectural solutions, automated testing and continuous integration, functional programming, working with tree data structures and recursive algorithms.
+
 ## Requirements
 
 Node.js v14 and higher.
